@@ -11,7 +11,7 @@ plugins {
     id("org.gradle.maven-publish")
 }
 
-group = "dev.icerock.gradle"
+group = "dev.dc.gradle"
 version = "3.0.3"
 
 repositories {
@@ -23,10 +23,10 @@ repositories {
 
 dependencies {
     implementation(gradleApi())
-    implementation("io.github.cdsap.talaiot:talaiot:1.5.0") {
+    implementation("io.github.cdsap.talaiot:talaiot:1.5.1") {
         exclude("io.github.cdsap.talaiot", "talaiot-request")
     }
-    implementation("io.github.cdsap.talaiot.plugin:influxdb:1.5.0") {
+    implementation("io.github.cdsap.talaiot.plugin:influxdb:1.5.1") {
         exclude("io.github.cdsap.talaiot", "talaiot-request")
     }
     implementation("com.influxdb:influxdb-client-kotlin:2.2.0")
@@ -42,7 +42,8 @@ buildConfig {
             buildConfigField("String", "influxOrg", "\"${properties["influx.org"]}\"")
             buildConfigField("String", "influxBucket", "\"${properties["influx.bucket"]}\"")
             buildConfigField("String", "influxToken", "\"${properties["influx.token"]}\"")
-            buildConfigField("String", "slackWebHook", "\"${properties["slack.webhook"]}\"")
+            buildConfigField("String", "messengerWebHook", "\"${properties["messenger.webhook"]}\"")
+            buildConfigField("String", "messengerChatId", "\"${properties["messenger.chat"]}\"")
         }
     }
 }
@@ -51,7 +52,7 @@ buildConfig {
 gradlePlugin {
     plugins {
         create("icerock-talaiot") {
-            id = "dev.icerock.gradle.talaiot"
+            id = "dev.dc.gradle.talaiot"
             implementationClass = "dev.icerock.gradle.talaiot.TalaiotConfigPlugin"
         }
     }

@@ -13,5 +13,5 @@ pluginManagement {
 }
 
 plugins {
-    id("dev.icerock.gradle.talaiot")
+    id("dev.dc.gradle.talaiot")
 }

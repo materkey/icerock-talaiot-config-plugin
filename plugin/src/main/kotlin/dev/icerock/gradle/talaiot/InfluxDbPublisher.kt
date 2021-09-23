@@ -84,9 +84,10 @@ class InfluxDbPublisher(
                 e.sendToSlack(logger)
             }
 
-            logger.lifecycle("Build analytics was sent on IceRock's InfluxDB and Gradle Build Scan.")
+            logger.lifecycle("Build analytics was sent on Delivery Club InfluxDB")
+            logger.lifecycle("Dashboard - https://grafana-mob-infra.dev.dcube.devmail.ru/d/LdvaKdHnz/build-metrics")
             logger.lifecycle("Detailed information about the collected metrics can be viewed using the build option -info")
-            logger.lifecycle("To disable analytics just remove plugin \"dev.icerock.gradle.talaiot\"")
+            logger.lifecycle("To disable analytics just remove plugin \"dev.dc.gradle.talaiot\"")
         }
     }
 
