@@ -15,9 +15,9 @@ class DefaultBuildMetricsProvider(
     private val report: ExecutionReport
 ) : ValuesProvider {
 
-    private fun String?.toSeconds(): Long {
-        val long = this?.toLong() ?: 0L
-        return long.millisecondsAsSeconds
+    private fun String?.toSeconds(): Float {
+        val float = this?.toFloat() ?: 0F
+        return float.millisecondsAsSeconds
     }
 
     override fun get(): Map<String, Any> {

@@ -14,14 +14,18 @@ import java.net.URL
 
 @Serializable
 data class Payload(
-    val text: String
+    val message: String,
+    val chat_ids: String
 )
 
 suspend fun Exception.sendToSlack(logger: Logger) {
     val slackAlertUrl = BuildConfig.slackWebHook
     val payload = Json.encodeToString(
         serializer = Payload.serializer(),
-        value = Payload(text = this.toString())
+        value = Payload(
+            message = this.toString(),
+            chat_ids = "DC_RIDER_APP_CI"
+        )
     )
 
     @Suppress("BlockingMethodInNonBlockingContext")

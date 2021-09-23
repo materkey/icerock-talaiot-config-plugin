@@ -1,6 +1,8 @@
 # About
-Configuration of [Talaiot gradle plugin](https://github.com/cdsap/Talaiot/) with IceRock Development setup. 
-All build statistics will be sent on IceRock's analytics database for analysis.
+Configuration of [Talaiot gradle plugin](https://github.com/cdsap/Talaiot/) with Delivery Club Development setup.
+All build statistics will be sent on Delivery Club's analytics database for analysis.
+
+This repo is fork of https://github.com/icerockdev/icerock-talaiot-config-plugin
 
 # Setup
 in `settings.gradle.kts` (gradle 6.9+):
@@ -23,11 +25,11 @@ In plugin catalog create a file `gradle.properties`
 
 add keys:  
 ```
-influx.url=  
-influx.org=
-influx.bucket=  
-influx.token= 
-slack.webhook=
+influx.url=https://influx-mob-infra.dev.dcube.devmail.ru
+influx.org=primary
+influx.bucket=talaiot
+influx.token=INSERT_TOKEN_HERE
+slack.webhook=https://qa-bot.dev.dcube.devmail.ru/tg/message
 ```
 
 for values you could use [influxdata.com](https://www.influxdata.com/) service

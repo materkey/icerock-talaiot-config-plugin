@@ -4,31 +4,17 @@
 
 package dev.icerock.gradle.talaiot
 
-import com.gradle.enterprise.gradleplugin.GradleEnterprisePlugin
 import io.github.cdsap.talaiot.plugin.influxdb.InfluxdbExtension
 import io.github.cdsap.talaiot.plugin.influxdb.TalaiotInfluxdbPlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Configuration
 import org.gradle.api.initialization.Settings
-import org.gradle.kotlin.dsl.gradleEnterprise
 
 class TalaiotConfigPlugin : Plugin<Settings> {
     private val talaiotPlugin = TalaiotInfluxdbPlugin()
-    private val gradleScanPlugin = GradleEnterprisePlugin()
 
     override fun apply(target: Settings) {
-        gradleScanPlugin.apply(target)
-
-        target.gradleEnterprise {
-            buildScan {
-                it.publishAlways()
-                it.termsOfServiceUrl = "https://gradle.com/terms-of-service"
-                it.termsOfServiceAgree = "yes"
-                it.isUploadInBackground = true
-            }
-        }
-
         target.gradle.rootProject { configureRootProject(it) }
     }
 

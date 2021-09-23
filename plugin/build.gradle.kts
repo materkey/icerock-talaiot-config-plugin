@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "dev.icerock.gradle"
-version = "3.0.3"
+version = "3.0.1-dc-2"
 
 repositories {
     jcenter()
@@ -23,10 +23,10 @@ repositories {
 
 dependencies {
     implementation(gradleApi())
-    implementation("io.github.cdsap.talaiot:talaiot:1.5.0") {
+    implementation("io.github.cdsap.talaiot:talaiot:1.5.1") {
         exclude("io.github.cdsap.talaiot", "talaiot-request")
     }
-    implementation("io.github.cdsap.talaiot.plugin:influxdb:1.5.0") {
+    implementation("io.github.cdsap.talaiot.plugin:influxdb:1.5.1") {
         exclude("io.github.cdsap.talaiot", "talaiot-request")
     }
     implementation("com.influxdb:influxdb-client-kotlin:2.2.0")
