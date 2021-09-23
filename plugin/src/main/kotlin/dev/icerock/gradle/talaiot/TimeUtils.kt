@@ -7,3 +7,7 @@ package dev.icerock.gradle.talaiot
 val Long.millisecondsAsSeconds: Long get() {
     return this / 1000
 }
+
+val Float.millisecondsAsSeconds: Float get() {
+    return this / 1000
+}

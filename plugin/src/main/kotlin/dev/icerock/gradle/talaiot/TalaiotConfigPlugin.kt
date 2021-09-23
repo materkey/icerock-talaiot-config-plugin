@@ -4,31 +4,17 @@
 
 package dev.icerock.gradle.talaiot
 
-import com.gradle.enterprise.gradleplugin.GradleEnterprisePlugin
 import io.github.cdsap.talaiot.plugin.influxdb.InfluxdbExtension
 import io.github.cdsap.talaiot.plugin.influxdb.TalaiotInfluxdbPlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Configuration
 import org.gradle.api.initialization.Settings
-import org.gradle.kotlin.dsl.gradleEnterprise
 
 class TalaiotConfigPlugin : Plugin<Settings> {
     private val talaiotPlugin = TalaiotInfluxdbPlugin()
-    private val gradleScanPlugin = GradleEnterprisePlugin()
 
     override fun apply(target: Settings) {
-        gradleScanPlugin.apply(target)
-
-        target.gradleEnterprise {
-            buildScan {
-                it.publishAlways()
-                it.termsOfServiceUrl = "https://gradle.com/terms-of-service"
-                it.termsOfServiceAgree = "yes"
-                it.isUploadInBackground = true
-            }
-        }
-
         target.gradle.rootProject { configureRootProject(it) }
     }
 
@@ -54,7 +40,6 @@ class TalaiotConfigPlugin : Plugin<Settings> {
         }
 
         configureConfigurationsMetrics(target)
-        configureMobilePluginMetric(target)
     }
 
     private fun configureConfigurationsMetrics(target: Project) {
@@ -103,23 +88,6 @@ class TalaiotConfigPlugin : Plugin<Settings> {
 
             target.talaiot {
                 metrics.customBuildMetrics(metricName to version)
-            }
-        }
-    }
-
-    private fun configureMobilePluginMetric(target: Project) {
-        val resPath = "META-INF/gradle-plugins/dev.icerock.mobile.multiplatform.properties"
-
-        target.allprojects { project ->
-            project.plugins.withId("dev.icerock.mobile.multiplatform") {
-                val url = it.javaClass.classLoader.getResource(resPath) ?: return@withId
-                val urlString = url.toString()
-                val regex = "mobile-multiplatform-(.*)\\.jar".toRegex()
-                val version = regex.find(urlString)?.groupValues?.get(1) ?: return@withId
-
-                target.talaiot {
-                    metrics.customBuildMetrics("dev.icerock:mobile-multiplatform" to version)
-                }
             }
         }
     }
