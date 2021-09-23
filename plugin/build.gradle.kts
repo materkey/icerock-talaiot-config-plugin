@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "dev.icerock.gradle"
-version = "3.0.1-dc-2"
+version = "3.0.3-dc-1"
 
 repositories {
     jcenter()
