@@ -21,7 +21,7 @@ data class Payload(
     val chatId: String
 )
 
-suspend fun Exception.sendToSlack(logger: Logger) {
+suspend fun Exception.sendToMessenger(logger: Logger) {
     val messengerAlertUrl = BuildConfig.messengerWebHook
     val messengerChatId = BuildConfig.messengerChatId
     val payload = Json.encodeToString(

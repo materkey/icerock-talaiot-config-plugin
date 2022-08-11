@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "dev.dc.gradle"
-version = "3.0.3"
+version = "3.0.4"
 
 repositories {
     jcenter()
