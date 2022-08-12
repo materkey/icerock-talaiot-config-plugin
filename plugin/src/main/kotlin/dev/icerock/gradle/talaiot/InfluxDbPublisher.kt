@@ -81,10 +81,10 @@ class InfluxDbPublisher(
                 logger.debug("InflixDB publishing successful")
             } catch (e: Exception) {
                 logger.debug("InfluxDbPublisher-Error", e)
-                e.sendToMessenger(logger)
+                e.sendToMessenger(logger, report.environment.gitUser)
             }
 
-            logger.lifecycle("Build analytics sent to Delivery Club InfluxDB")
+            logger.lifecycle("\nBuild analytics sent to Delivery Club InfluxDB")
             logger.lifecycle("Dashboard - https://grafana.mob.devmail.ru/d/LdvaKdHnz/build-metrics")
             logger.lifecycle("Detailed information about the collected metrics can be viewed using the build option -info")
             logger.lifecycle("To disable analytics just remove plugin \"dev.dc.gradle.talaiot\"")

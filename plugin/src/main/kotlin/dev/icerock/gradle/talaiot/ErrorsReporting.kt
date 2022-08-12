@@ -21,13 +21,13 @@ data class Payload(
     val chatId: String
 )
 
-suspend fun Exception.sendToMessenger(logger: Logger) {
+suspend fun Exception.sendToMessenger(logger: Logger, gitUser: String?) {
     val messengerAlertUrl = BuildConfig.messengerWebHook
     val messengerChatId = BuildConfig.messengerChatId
     val payload = Json.encodeToString(
         serializer = Payload.serializer(),
         value = Payload(
-            message = this.toString(),
+            message = "$this\ngitUser: $gitUser",
             chatId = messengerChatId
         )
     )
